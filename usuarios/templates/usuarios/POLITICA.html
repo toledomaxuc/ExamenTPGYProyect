@@ -1,0 +1,64 @@
+{% extends 'usuarios/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="Noticia-container">
+        <div class="row">
+            <div class="col-md-8">
+                <h1>El inusual paso al frente del ministro Cordero en medio de la crisis de seguridad y sus gestos a
+                    Apruebo Dignidad</h1>
+                <h6>Autor: Isabel Caro y José Wilson</h6>
+                <h6>Fecha y ubicación: 10/04/2023 , Santiago de Chile</h6>
+                <h6>Categoría: Política</h6>
+                <p>A petición del propio Presidente Gabriel Boric, el ministro de Justicia asumió un rol protagónico
+                    para sacar adelante la agenda de seguridad que impulsa el Ejecutivo y que tensiona la alianza de
+                    gobierno. La ley Nain-Retamal fue su primera prueba de fuego y su papel en su discusión cosechó la
+                    valoración de Apruebo Dignidad.</p>
+
+
+                <h3>“Estoy aprendiendo los códigos de la política”</h3>
+                <p>Desde ese día -tras una petición expresa del Presidente y ante la ausencia de Ana Lya Uriarte
+                    (Segpres), quien sigue con licencia-, Cordero ha apoyado el despliegue de la ministra Carolina Tohá
+                    en medio de la crisis, algo que no es usual para un jefe de Justicia. En esa línea, remarcan en el
+                    gobierno, fue que la noche del miércoles pasado acompañó a la titular de Interior hasta la Posta
+                    Central, donde a esa hora se mantenía en estado crítico el cabo Daniel Palma, cuya muerte terminó
+                    por agudizar la crisis en La Moneda. Esa misma madrugada se sumaría a la reunión de emergencia que
+                    citó el jefe de Estado en Palacio.
+
+                    Pero Cordero también tuvo un rol en el Congreso. Sin ir más lejos, cuadró votos para la aprobación
+                    de la ley Nain-Retamal, publicada hoy en el Diario Oficial, y luego acompañó a la ministra Tohá en
+                    todas las reuniones que sostuvo el fin de semana. El viernes con ambas cámaras del Congreso y el
+                    sábado con las comisiones de Seguridad del Senado y la Cámara Baja.
+
+                    Hoy mismo se sumó a una cita liderada por la jefa del gabinete con dirigentes del Frente Amplio,
+                    donde el sector le pidió al Ejecutivo mayor liderazgo respecto de una agenda de seguridad que
+                    -interpretan- está imponiendo la derecha.</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="https://www.latercera.com/resizer/7DNJFdxMTRvuUTj7nF6gZD4k5RQ=/arc-anglerfish-arc2-prod-copesa/public/4VFE2KOEDBF4NDZHIJPF6733GQ.jpg"
+                            class="img-fluid" alt="Imagen 1" width="400px" height="400px"> 
+                    </div>
+                    <div class="col-md-6">
+                        <div class="image-container">
+                            <img src="https://static.emol.cl/emol50/Fotos/2023/02/16/file_20230216080824.jpg" class="img-fluid" alt="Cordero" width="400px" height="500px">
+                            <h7>Ministro de Justicia Luis Cordero Vega</h7>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+               
+                <h4>Te puede interesar:</h4>
+                <ul>
+                    <li><a href="{% url 'index' %}">Volver al Inicio</a></li>
+                    <li><a href="{% url 'DEPORTE' %}">Noticias Deportes</a></li>
+                    <li><a href="{% url 'POPULAR' %}">Noticias Popular</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+<link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+{% endblock %}
+</html>
+

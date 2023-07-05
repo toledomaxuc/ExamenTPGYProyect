@@ -1,0 +1,27 @@
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'tasks.css' %}">
+
+
+{% block content %}
+<h1>Tasks Pending</h1>
+
+<ul class="container1">
+    {% for task in tasks %}
+        <li>
+            <a href="{% url 'task_detail' task.id %}">
+                {% if task.important %}
+                <strong>{{task.title}}</strong>
+                {% else %}
+                {{task.title}}
+                {% endif %}
+                <p>{{task.description}}</p>
+                <p>{{task.user.username}}</p>
+
+                
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

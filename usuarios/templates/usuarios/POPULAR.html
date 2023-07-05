@@ -1,0 +1,39 @@
+{% extends 'usuarios/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="Noticia-container">
+        <div class="row">
+            <div class="col-md-8">
+                <h1>La Fiscalía de Chile extiende a todo el país el criterio de prisión preventiva para extranjeros detenidos sin documento de identidad</h1>
+                <h6>Autor: María Plaza</h6>
+                <h6>Fecha y ubicación: 10/04/2023, Santiago de Chile</h6>
+                <h6>Categoría: Popular</h6>
+                <p>La Fiscalía Nacional de Chile informó este lunes que extendió a todo el país el criterio bajo el cual los fiscales que investigan delitos de homicidio puedan solicitar prisión preventiva para los extranjeros que detengan y que carezcan de documento de identidad.
+
+                El jueves pasado, el fiscal nacional, Ángel Valencia, dio a conocer este cambio en los procedimientos legales en la Región Metropolitana de Santiago, en medio de la conmoción por la muerte del cabo primero Daniel Palma Yánez, integrante de Carabineros. Por este caso, la Fiscalía solicitó colaboración para encontrar a dos personas, presuntamente de nacionalidad venezolana.</p>
+
+                <p>De acuerdo con este nuevo procedimiento legal, si la persona detenida es extranjera, sin documentos y no figura en el sistema, la Fiscalía solicitará la prisión preventiva hasta que se logre establecer su identidad.</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="https://media.biobiochile.cl/wp-content/uploads/2023/04/social-detenidos-sin-identidad-corroborada-1200x633.png" class="img-fluid" alt="Imagen 1">
+                        <h7>Fiscal Nacional - Angel Valencia</h7>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="https://cnnespanol.cnn.com/wp-content/uploads/2023/04/chile-prision-preventiva-extranjeros.jpg?quality=100&strip=info" class="img-fluid" alt="Imagen 2">
+                        <h7>Prisión preventiva para extrangeros por María Plaza</h7>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h4>Te puede interesar:</h4>
+                <ul>
+                    <li><a href="{% url 'index' %}">Volver al Inicio</a></li>
+                    <li><a href="{% url 'DEPORTE' %}">Noticias Deportes</a></li>
+                    <li><a href="{% url 'POLITICA' %}">Noticias Políticas</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+{% endblock %}

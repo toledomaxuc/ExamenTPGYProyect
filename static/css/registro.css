@@ -1,0 +1,23 @@
+
+.registro-container h1 {
+  font-size: 30px !important;
+}
+
+.registro-container label {
+  font-size: 18px;
+}
+
+.registro-container input::placeholder {
+  font-size: 18px;
+}
+
+body {
+  background-color: rgb(210, 228, 245); 
+  overflow-x: hidden;
+  margin-top: 160px;
+  
+}
+
+.btn-registro {
+  margin-top: 10px;
+}

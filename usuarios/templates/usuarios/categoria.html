@@ -1,0 +1,51 @@
+{% extends 'usuarios/base.html' %}
+{% load static %}
+
+{% block content %}
+	<div class="Noticia-container">
+		<div class="row">
+			<div class="col-md-8">
+				<h1>Lista de Categorías</h1>
+                <div class="categorias-container">
+                    <a href="{% url 'POPULAR' %}" class="categoria-item">
+                        <div class="categoria-imagen">
+                            <img src="https://cdn.pixabay.com/photo/2015/02/15/09/33/news-636978_1280.jpg" alt="Popular">
+                        </div>
+                        <div class="categoria-info">
+                            <h2>POPULAR</h2>
+                            <p>Maria Plaza</p>
+                        </div>
+                    </a>
+                    <a href="{% url 'DEPORTE' %}" class="categoria-item">
+                        <div class="categoria-imagen">
+                            <img src="https://img.freepik.com/fotos-premium/aplicacion-linea-futbol-telefono-inteligente-pantalla-campos-futbol-telefono-movil-concepto-noticias-futbol-canal-deportivo-representacion-3d_59286-3334.jpg" alt="Deporte">
+                        </div>
+                        <div class="categoria-info">
+                            <h2>DEPORTE</h2>
+                            <p>Cesar Vasquez</p>
+                        </div>
+                    </a>
+                    <a href="{% url 'POLITICA' %}" class="categoria-item">
+                        <div class="categoria-imagen">
+                            <img src="https://us.123rf.com/450wm/maxkabakov/maxkabakov1803/maxkabakov180300476/96665776-concepto-pol%C3%ADtico-teclado-de-computadora-con-la-palabra-observador-pol%C3%ADtico-enfoque-seleccionado.jpg?ver=6" alt="Politica">
+                        </div>
+                        <div class="categoria-info">
+                            <h2>POLITICA</h2>
+                            <p>Isabel Caro</p>
+                        </div>
+                    </a>
+                </div>
+			</div>
+			<div class="col-md-4">
+				<h4>Te puede interesar:</h4>
+				<ul>
+					<li><a href="{% url 'index' %}">Volver al inicio</a></li>
+					<li><a href="{% url 'POLITICA' %}">Noticias Política</a></li>
+					<li><a href="{% url 'POPULAR' %}">Noticias Popular</a></li>
+					<!-- Agrega más enlaces aquí si es necesario -->
+				</ul>
+			</div>
+		</div>
+	</div>
+	<link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+{% endblock %}

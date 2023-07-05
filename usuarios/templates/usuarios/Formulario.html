@@ -1,0 +1,59 @@
+{% extends 'usuarios/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="Formulario-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h1>¡Contáctanos!</h1>
+                <form onsubmit="return validarFormulario();">
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" class="form-control" id="nombre" placeholder="Ingresa tu nombre">
+                        <span class="error-msg">* Por favor ingresa tu nombre</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" id="email" placeholder="Ingresa tu email">
+                        <span class="error-msg">* Email incorrecto</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje:</label>
+                        <textarea class="form-control" id="mensaje" rows="3" placeholder="Escribe lo que necesitas y ya te responderemos" onkeyup="validarFormulario();"></textarea>
+                        <small>Caracteres restantes: <span id="caracteres-restantes">500</span></small>
+                      
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                    <button type="reset" class="btn btn-primary">Limpiar campos</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("input[type='email']").blur(function(){
+            if($(this).val() === ""){
+                $(this).next("span").show();
+            } else {
+                $(this).next("span").hide();
+            }
+        });
+
+        $("#nombre").blur(function(){
+            if($(this).val() === ""){
+                $(this).next("span").show();
+            } else {
+                $(this).next("span").hide();
+            }
+        });
+    });
+</script>
+<link rel="stylesheet" href="{% static 'css/formulario.css'%}">
+<link rel="stylesheet" href="{% static 'css/registro.css'%}">
+<script src="{% static 'js/validacion.js' %}"></script>
+
+{% endblock %}
+</html>
