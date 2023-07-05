@@ -2,154 +2,41 @@
 {% load static %}
 
 {% block content %}
-<main class="contanier">
+<main class="container">
     <div class="row">
         <div class="col-md-4 offset-md-4 mt-5">
-            <form method="POST">
-                <form action="{% url 'registro'%}" method="POST"> <!-- onsubmit="return validarRegistro();"-->
+            <form action="{% url 'registro' %}" method="POST">
+                {% csrf_token %}
 
-                    <h1 class="text-cente">Registro</h1>
-                    {% csrf_token %}
-                    
-                    <pre>Nombre             :   <input type="text" name="username"></pre>
-                    <pre>Apellido Paterno   :   <input type="text" name="paterno"></pre>
-                    <pre>Apellido Materno   :   <input type="text" name="materno"></pre>
-                    <pre>Email              :   <input type="mail" name="email"></pre>
-                    <pre>Fecha de nacimiento:   <input type="text" name="fechaNac"></pre>
-                    <pre>Teléfono           :   <input type="text" name="telefono"></pre>
-                    <pre>Dirección          :   <input type="text" name="direccion"></pre>
-                    <pre>Contraseña         :   <input type="password" name="password1"></pre>
-                    <pre>Repita contraseña  :   <input type="password" name="password2"></pre>
-                    <div>
-                        {{error}}
-                    </div>
-                    <div>
-                        <button class="btn btn-primary">
-                            Registro
-                        </button>
-                    </div>
+                <h1 class="text-center">Registro</h1>
 
-
-
-
-
-                    <!-- <div class="form-group">
-                                <label for="rut">Rut:</label>
-                                <input type="number" class="form-control" id="rut" placeholder="Ingrese su rut sin puntos ni guion">
-                                <span style="display: none">* Por favor ingrese su Rut como se indica</span>
-            
-                            </div>
-                            <div class="form-group">
-                                <label for="nombre">Nombre:</label>
-                                <input type="text" class="form-control" id="nombre" placeholder="Ingresa tu nombre">
-                                <span style="display: none">* Por favor ingrese su nombre</span>
-                            </div>
-                            <div class="form-group">
-                                 <label for="apellidos">Apellidos:</label>
-                                 <input type="text" class="form-control" id="apellidos" placeholder="Ingrese ambos apellidos ">
-                                 <span style="display: none">* Ingrese los apellidos por favor</span>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email:</label>
-                                <input type="email" class="form-control" id="email" placeholder="Ingresa tu email">
-                                <span style="display: none">* Email incorrecto</span>
-                            </div>
-                            <div class="form-group">
-                                <label for="telefono">Telefono:</label>
-                                <input type="number" class="form-control" id="telefono" placeholder="Ingrese su telefono">
-                                <span style="display: none">* Por favor facilite su numero despues de +56-</span>
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Contraseña:</label>
-                                <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña que contenga una mayuscula y un caracter especial (@#$)">
-                                <span style="display: none">* Contraseña incorrecta</span>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Registrar</button>
-                            <button type="reset" class="btn btn-primary">Limpiar campos</button> -->
-                </form>
+                <pre>Nombre             :   <input type="text" name="nombre"></pre>
+                <pre>Apellido Paterno   :   <input type="text" name="paterno"></pre>
+                <pre>Apellido Materno   :   <input type="text" name="materno"></pre>
+                <pre>Usuario            :   <input type="text" name="username"></pre>
+                <pre>Email              :   <input type="email" name="email"></pre>
+                <pre>Fecha de nacimiento:   <input type="text" name="fechaNac"></pre>
+                <pre>Teléfono           :   <input type="text" name="telefono"></pre>
+                <pre>Dirección          :   <input type="text" name="direccion"></pre>
+                <pre>Contraseña         :   <input type="password" name="password1"></pre>
+                <pre>Repita contraseña  :   <input type="password" name="password2"></pre>
+                <div>
+                    {{ error }}
+                </div>
+                <div>
+                    <button class="btn btn-primary" type="submit">
+                        Registro
+                    </button>
+                </div>
             </form>
         </div>
     </div>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("input[type='email']").blur(function () {
-                if ($(this).val() === "") {
-                    $(this).next("span").show();
-                } else {
-                    $(this).next("span").hide();
-                }
-            });
-        });
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("input[type='password']").blur(function () {
-                if ($(this).val() === "") {
-                    $(this).next("span").show();
-                } else {
-                    $(this).next("span").hide();
-                }
-            });
-        });
-    </script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("input#rut").blur(function () {
-                if ($(this).val() === "") {
-                    $(this).next("span").show();
-                } else {
-                    $(this).next("span").hide();
-                }
-            });
-        });
-    </script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("input#nombre").blur(function () {
-                if ($(this).val() === "") {
-                    $(this).next("span").show();
-                } else {
-                    $(this).next("span").hide();
-                }
-            });
-        });
-    </script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("input#apellidos").blur(function () {
-                if ($(this).val() === "") {
-                    $(this).next("span").show();
-                } else {
-                    $(this).next("span").hide();
-                }
-            });
-        });
-    </script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("input#telefono").blur(function () {
-                if ($(this).val() === "") {
-                    $(this).next("span").show();
-                } else {
-                    $(this).next("span").hide();
-                }
-            });
-        });
-    </script>
 </main>
 
-
-</body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
-integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
-crossorigin="anonymous"></script>
+        integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
+        crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
-integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
-crossorigin="anonymous"></script>
+        integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
+        crossorigin="anonymous"></script>
 {% endblock %}
-
-</html>

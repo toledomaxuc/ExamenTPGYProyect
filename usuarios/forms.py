@@ -10,11 +10,12 @@ class usuarioForm(ModelForm):
         fields = ("nombre",
                   "apellido_paterno",
                   "apellido_materno",
+                  "username",
                   "email",
                   "fecha_nacimiento",
                   "telefono",
                   "direccion",
-                  "contrasena")
+                  "password1")
         
 
 class NoticiaForm(forms.ModelForm):

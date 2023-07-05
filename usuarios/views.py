@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth import login, logout, authenticate
 from django.views.generic import ListView
-from .models import Noticia
+from .models import Noticia, NuevoUsuario
 from django.db.models import Q
 from django.views.generic import TemplateView
 from .forms import NoticiaForm
@@ -12,6 +12,8 @@ from django.contrib.auth.decorators import login_required
 from .forms import TaskForm
 from .models import Task
 from django.utils import timezone
+
+
 # Create your views here.
 
 def index(request):
@@ -21,46 +23,79 @@ def index(request):
 #Funcion de registro
 def registro(request):
     if request.method == 'GET':
-        return render(request, 'usuarios/registro.html',{
+        #si el metodo es GET, vuelve a registro.html y muestra el formulario
+        return render(request, 'usuarios/registro.html', {
             'form': UserCreationForm
         })
     else:
-        if request.POST['password1']== request.POST['password2']:
+        #Si el metodo es POST, valida ambas contraseñas que sean iguales para pasar a
+        #guardar el objeto completo
+        if request.POST['password1'] == request.POST['password2']:
             try:
                 user = User.objects.create_user(username=request.POST['username'],
-                password=request.POST['password1'])
+                password=request.POST['password1'])     
+                 
+                nombre           = request.POST["nombre"]
+                aPaterno         = request.POST["paterno"]
+                aMaterno         = request.POST["materno"]
+                usuario          = request.POST['username']    
+                email            = request.POST["email"]
+                fechaNac         = request.POST["fechaNac"]
+                telefono         = request.POST["telefono"]
+                direccion        = request.POST["direccion"]
+                password1       = request.POST["password1"]
+                password2       = request.POST["password2"]
+                activo           = '1'
+                #en cada variable, luego en la variable objeto guarda todo juntito
+                    
+                objeto = NuevoUsuario.objects.create(
+                                            nombre=nombre,
+                                            apellido_paterno=aPaterno,
+                                            apellido_materno=aMaterno,
+                                            username=usuario,
+                                            email=email,
+                                            fecha_nacimiento=fechaNac,
+                                            telefono=telefono,
+                                            direccion=direccion,
+                                            password1=password1,   
+                                            password2=password2,                                  
+                                            activo=1)
+                #lo tira a la base de datos con .save()
                 user.save()
                 login(request, user)
-                return redirect('tasks')
-            except IntegrityError:
-                return render(request,'usuarios/registro.html',{
-                    'form':UserCreationForm,
-                    "error": 'User already exists'
+                return render (request, 'usuarios/index.html',{
+                    'form': UserCreationForm,
+                    "error": 'usuario creado exitosamente'
                 })
-        return render(request, 'usuarios/registro.html',{
-            'form':UserCreationForm,
-            "error": 'Password do not match'
-        })
+            except IntegrityError:
+                return render (request, 'usuarios/index.html',{
+                    'form': UserCreationForm,
+                    "error": 'El usuario ya existe'
+                })
+    return render (request, 'usuarios/registro.html',{
+                    'form': UserCreationForm,
+                    "error": 'Las contraseñas no coinciden'
+})
 
 
 def cerrar_sesion(request):
     logout(request)
-    return redirect('usuarios/index')
+    return redirect('index')
 
 
 def iniSesion(request):
     if request.method == 'GET':
-         return render(request, 'usuarios/periodista.html', {
-            'form': AuthenticationForm
+        return render(request, 'usuarios/periodista.html', {
+            'form': AuthenticationForm()
         })
     else:
         user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
         if user is None:
-              return render(request, 'usuarios/periodista.html', {
-                'form': AuthenticationForm,
-                'error': 'Usuario o password es incorrecto'
+            return render(request, 'usuarios/periodista.html', {
+                'form': AuthenticationForm(),
+                'error': 'Usuario o contraseña incorrectos'
             })
-        else:   
+        else:
             login(request, user)
             return redirect('usuarios/tasks')
 
@@ -85,15 +120,6 @@ def periodista(request):
     context={} 
     return render(request, 'usuarios/periodista.html', context)
 
-
-class PoliticaView(TemplateView):
-    template_name = 'usuarios/POLITICA.html'
-
-class PopularView(TemplateView):
-    template_name = 'usuarios/POPULAR.html'
-
-class DeporteView(TemplateView):
-    template_name = 'usuarios/DEPORTE.html'
 
 class BuscarNoticias(ListView):
     model = Noticia

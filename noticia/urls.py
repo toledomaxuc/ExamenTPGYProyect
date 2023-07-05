@@ -15,9 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from usuarios.views import create_task, index
+from usuarios import views
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('usuarios/',include('usuarios.urls')),
-    
+    path('tasks/create/', create_task, name='create_task'),
+    path('logout/', views.cerrar_sesion, name='logout'),
+    path('usuarios/index/', index, name='index'),
 ]
