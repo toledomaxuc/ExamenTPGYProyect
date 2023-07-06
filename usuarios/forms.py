@@ -15,7 +15,8 @@ class usuarioForm(ModelForm):
                   "fecha_nacimiento",
                   "telefono",
                   "direccion",
-                  "password1")
+                  "password1",
+                  "password2")
         
 
 class NoticiaForm(forms.ModelForm):

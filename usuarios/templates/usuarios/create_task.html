@@ -1,15 +1,18 @@
-
+{% extends 'usuarios/base.html' %}
+{% load static %}
 
 {% block content %}
-    <h1>Create Task</h1>
+<link rel="stylesheet" href="{% static 'css/crud.css' %}">
 
-    {{error}}
-    <form action="/tasks/create/" method="POST">
-        {% csrf_token %}
-        {{form}}
+<div class="crud-container">
+  <h1>Ingresa una Noticia</h1>
 
-        <button>
-            Save
-        </button>
-    </form>
+  {{ error }}
+  <form action="/tasks/create/" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">Subir noticia</button>
+  </form>
+</div>
 {% endblock %}

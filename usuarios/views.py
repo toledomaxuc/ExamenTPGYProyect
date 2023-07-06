@@ -77,12 +77,12 @@ def registro(request):
                     "error": 'Las contraseñas no coinciden'
 })
 
-
+@login_required
 def cerrar_sesion(request):
     logout(request)
     return redirect('index')
 
-
+@login_required
 def iniSesion(request):
     if request.method == 'GET':
         return render(request, 'usuarios/periodista.html', {
@@ -97,7 +97,7 @@ def iniSesion(request):
             })
         else:
             login(request, user)
-            return redirect('usuarios/tasks')
+            return redirect('index')
 
 class PoliticaView(TemplateView):
     template_name = 'usuarios/POLITICA.html'
@@ -177,12 +177,12 @@ def tasks(request):
     tasks = Task.objects.filter(user = request.user, datecompleted__isnull=True)
     return render(request, 'usuarios/tasks.html', {'tasks': tasks})
 
-
+@login_required
 def tasks_completed(request):
     tasks = Task.objects.filter(user = request.user, datecompleted__isnull=False).order_by('-datecompleted')
     return render(request, 'usuarios/tasks.html', {'tasks': tasks})
                 
-
+@login_required
 def create_task(request):
     if request.method == 'GET':
         return render(request, 'usuarios/create_task.html', {
@@ -201,7 +201,7 @@ def create_task(request):
                 'error': 'Por favor provee datos correctos'
             })
 
-
+@login_required
 def task_detail(request, task_id):
     if request.method == 'GET':
         task = get_object_or_404(Task, pk=task_id, user=request.user)
@@ -218,7 +218,7 @@ def task_detail(request, task_id):
                 'task':task, 'form': form, 'error': "Error updating task "
             })
 
-
+@login_required
 def complete_task(request, task_id):
     task = get_object_or_404(Task, pk=task_id, user=request.user)
     if request.method =='POST':
@@ -226,7 +226,7 @@ def complete_task(request, task_id):
         task.save()
         return redirect('tasks')
     
-    
+@login_required   
 def delete_task(request, task_id):
     task = get_object_or_404(Task, pk=task_id, user=request.user)
     if request.method =='POST':

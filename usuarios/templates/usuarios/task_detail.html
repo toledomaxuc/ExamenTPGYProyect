@@ -1,22 +1,39 @@
-
-
+{% extends 'usuarios/base.html' %}
+{% load static %}
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/crud.css' %}">
+<div class="container" style="margin-top: 170px;">
     <h1>{{task.title}}</h1>
 
     {{error}}
 
-    <form method="POST">
+    <form method="POST" class="crud-form" style="margin-left: auto;margin-top: 10px;">
         {% csrf_token %}
-        {{form.as_p}}
-        <button>
-            Update
+        <div class="form-group" style="margin-left: 138px; font-size: 20px;">
+            {{form.title.label}}
+            <div style="margin-left: 138px; font-size: 20px;" >
+            {{form.title}}
+            </div>
+        </div>
+        <div class="form-group" style="margin-left: 138px;margin-top: 20px;">
+            {{form.description.label}}
+            <div style="margin-left: 138px; margin-top: 2px;">
+            {{form.description}}
+        </div>
+        </div>
+        <div class="form-group"style="margin-left: 100px;margin-top: 10px;">
+            {{form.imagen.label}}
+            {{form.imagen}}
+        </div>
+        <button class="btn btn-primary" type="submit" style="margin-left: 100px;margin-top: 10px;">
+            Actualizar
         </button>
     </form>
-    <form action="{% url 'complete_task' task.id %}" method="POST">
+    <form action="{% url 'complete_task' task.id %}" method="POST" class="crud-form" style="margin-left: auto;">
         {% csrf_token %}
-        <button>
+        <button class="btn btn-primary" type="submit" style="margin-left: 100px; margin-top: 10px;">
             Publicar
         </button>
     </form>
-
+</div>
 {% endblock %}

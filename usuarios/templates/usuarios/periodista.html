@@ -3,30 +3,33 @@
 
 {% block content %}
 <div class="inicio_container mt-custom">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center align-items-center">
         <div class="col-md-6">
             <div class="card">
                 <div class="formulario">
-                    <h1> Inicio de sesion </h1>
-                    <form action="{% url 'registro'%}" method="post">
+                    <h1>Inicio de sesión</h1>
+                    <form action="{% url 'registro' %}" method="post">
                         {% csrf_token %}
                         <div class="username">
                             <input type="text" name="username" required>
-                            <label> Nombre de usuario </label>
+                            <label>Nombre de usuario</label>
                         </div>
-                        <div class="password  ">
+                        <div class="password">
                             <input type="password" name="password1" required>
-                            <label> Contraseña </label>
+                            <label>Contraseña</label>
                         </div>
                         {% if user.is_authenticated %}
                         <a href="tasks">Ir a tareas</a>
                         {% else %}
-                        alert()
+                        <script>
+                            $(document).ready(function() {
+                                alert('USUARIO O CONTRASEÑA INCORRECTA');
+                            });
+                        </script>
                         {% endif %}
-                        <div class="recordar">¿Olvido su contraseña?</div>
+                        <div class="recordar">¿Olvidó su contraseña?</div>
                         <button class="btn btn-primary" type="submit">Iniciar</button>
-
-                         <div class="registrarse">
+                        <div class="registrarse">
                             Quiero hacer el <a href="{% url 'registro' %}">Registro</a>
                         </div>
                     </form>
@@ -34,6 +37,8 @@
             </div>
         </div>
     </div>
+</div>
+
     <div class="row justify-content-center mt-4">
         <div class="col-md-6">
             <div class="card">
@@ -52,7 +57,7 @@
     </div>
 </div>
 
+
+
 <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
-
-
 {% endblock %}

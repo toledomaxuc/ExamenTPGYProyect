@@ -1,23 +1,38 @@
+/* registro.css */
 
-.registro-container h1 {
-  font-size: 30px !important;
-}
-
-.registro-container label {
-  font-size: 18px;
-}
-
-.registro-container input::placeholder {
-  font-size: 18px;
-}
-
-body {
-  background-color: rgb(210, 228, 245); 
-  overflow-x: hidden;
-  margin-top: 160px;
+.registro-container {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+  }
   
-}
-
-.btn-registro {
-  margin-top: 10px;
-}
+  .registro-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .registro-container pre {
+    margin-bottom: 10px;
+  }
+  
+  .registro-container input[type="text"],
+  .registro-container input[type="password"],
+  .registro-container input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .registro-container button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+  }
+  
+  .registro-container div {
+    color: red;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  

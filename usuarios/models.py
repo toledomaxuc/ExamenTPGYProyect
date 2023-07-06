@@ -1,6 +1,7 @@
 from django.db import models
 from django.db import migrations
 from django.contrib.auth.models import User
+from django.utils.translation import gettext_lazy as _
 # Create your models here.
 class NuevoUsuario(models.Model):
     nombre = models.CharField(max_length=20)
@@ -20,16 +21,20 @@ class NuevoUsuario(models.Model):
 
     
 class Task(models.Model):
-    title = models.CharField(max_length=100)
-    description = models.TextField(blank=True)
-    imagen = models.ImageField(upload_to='img/', null=True, blank=True)
-    created = models.DateTimeField(auto_now_add=True)
-    datecompleted = models.DateTimeField(null=True, blank=True)
-    important = models.BooleanField(default=False)
+    title = models.CharField(max_length=100, verbose_name=_("Título"))
+    description = models.TextField(blank=True, verbose_name=_("Descripción"))
+    imagen = models.ImageField(upload_to='img/', null=True, blank=True, verbose_name=_("Imagen"))
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_("Creado"))
+    datecompleted = models.DateTimeField(null=True, blank=True, verbose_name=_("Fecha completado"))
+    important = models.BooleanField(default=False, verbose_name=_("Importante"))
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    
+
     def __str__(self):
-        return self.title + '- by' + self.user.username
+        return self.title + ' - por ' + self.user.username
+
+    class Meta:
+        verbose_name = _("Tarea")
+        verbose_name_plural = _("Tareas")
 #buscador
 
 class Noticia(models.Model):
