@@ -7,7 +7,7 @@
 
     {{error}}
 
-    <form method="POST" class="crud-form" style="margin-left: auto;margin-top: 10px;">
+    <form method="POST" class="crud-form" style="margin-left: auto;margin-top: 10px;" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-group" style="margin-left: 138px; font-size: 20px;">
             {{form.title.label}}
@@ -21,7 +21,7 @@
             {{form.description}}
         </div>
         </div>
-        <div class="form-group"style="margin-left: 100px;margin-top: 10px;">
+        <div class="form-group" style="margin-left: 100px;margin-top: 10px;">
             {{form.imagen.label}}
             {{form.imagen}}
         </div>
@@ -37,3 +37,4 @@
     </form>
 </div>
 {% endblock %}
+
