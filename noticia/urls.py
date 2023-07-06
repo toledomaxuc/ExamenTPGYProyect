@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from usuarios.views import create_task, index
 from usuarios import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 
@@ -26,4 +28,4 @@ urlpatterns = [
     path('tasks/create/', create_task, name='create_task'),
     path('logout/', views.cerrar_sesion, name='logout'),
     path('usuarios/index/', index, name='index'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
