@@ -1,70 +1,56 @@
-
-
 function validarRegistro() {
-
-
-    // Obtenemos los valores de los campos nomnre, email y password.
-
-    var rut = document.getElementById('rut').value;
+    // Obtenemos los valores de los campos
     var nombre = document.getElementById('nombre').value;
     var apellidos = document.getElementById('apellidos').value;
     var email = document.getElementById('email').value;
     var telefono = document.getElementById('telefono').value;
-    var password = document.getElementById('password').value;
+    var password1 = document.getElementById('password1').value;
+    var password2 = document.getElementById('password2').value;
 
-    
-    if (nombre === '' || email === '' || password === '') {
+    // Realizamos las validaciones
+    if (nombre === '' || email === '' || password1 === '') {
         alert('Ingresar todos los campos');
-        return false; // Se detiene el envío del formulario.
-    }
-    if(rut.length != 9){
-        alert('Por favor ingrese un rut valido');
         return false;
     }
 
     if (nombre.length < 3) {
-        alert('Por favor ingrese un nombre minimo con 3 caracteres.');
+        alert('Por favor ingrese un nombre mínimo con 3 caracteres.');
         return false;
     }
-    if(apellidos.length < 3){
-        alert('Por favor ingrese ambos apellidos.')
+    if (apellidos.length < 3) {
+        alert('Por favor ingrese ambos apellidos.');
         return false;
-
     }
-
     var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-        alert('Ingresa un correo electrónico válido');
+        alert('Ingrese un correo electrónico válido');
         return false;
     }
-    
     var telefonoRegex = /^\d{9}$/;
-    if(!telefonoRegex.test(telefono)){
-        alert('Por favor ingrese un telefono valido.')
+    if (!telefonoRegex.test(telefono)) {
+        alert('Por favor ingrese un teléfono válido.');
+        return false;
+    }
+    if (!validarPassword(password1)) {
+        alert('Contraseña inválida. Utilice al menos una mayúscula y un carácter especial.');
         return false;
     }
 
-    if(validarPassword(password)){
-        alert('Registro realizado correctamente');
-        return true;
-        
-    }else{
-        alert('Contraseña invalida, utilice al menos una mayuscula y un caracter especial');
-        return false;       
+    if (password1 !== password2) {
+        alert('Las contraseñas no coinciden');
+        return false;
     }
+    return true; // Si todas las validaciones pasan, el formulario se puede enviar
+}
 
-    
-
-    function validarPassword(password) {
-        // La constraseña debe tener al menos una mayuscula
-        if (!/[A-Z]/.test(password)) {
-            return false;
-        }
-        // La constraseña debe tener al menos un caracter especial
-        if (!/[!@#$%^&*()_++\-=[\]{};':"\\|,.<>/?]+/.test(password)) {
-            return false;
-        }
-        // Si lo anterior se cumple, la contraseña es valida
-        return true;
+function validarPassword(password) {
+    // La contraseña debe tener al menos una mayúscula
+    if (!/[A-Z]/.test(password)) {
+        return false;
     }
+    // La contraseña debe tener al menos un carácter especial
+    if (!/[!@#$%^&*()_++\-=[\]{};':"\\|,.<>/?]+/.test(password)) {
+        return false;
+    }
+    return true; // La contraseña cumple con todas las validaciones
 }

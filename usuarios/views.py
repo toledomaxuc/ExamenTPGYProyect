@@ -63,7 +63,7 @@ def registro(request):
                 #lo tira a la base de datos con .save()
                 user.save()
                 login(request, user)
-                return render (request, 'usuarios/iniSesion.html',{
+                return render (request, 'usuarios/index.html',{
                     'form': UserCreationForm,
                     "error": 'usuario creado exitosamente'
                 })

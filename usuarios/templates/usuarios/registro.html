@@ -1,19 +1,20 @@
 {% extends 'usuarios/base.html' %}
+
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/registro.css' %}">
 {% block content %}
-<main class="container">
+
+<main class="registro-container">
     <div class="row">
         <div class="col-md-4 offset-md-4 mt-5">
-            <form method="POST" action="{% url 'registro' %}">
+            <form method="POST" action="{% url 'registro' %}" onsubmit="return validarRegistro()">
                 {% csrf_token %}
-                <h1 class="text-center">Registro</h1>
+                <h1>Registro</h1>
                 <pre>Nombre             :   <input type="text" name="nombre"></pre>
                 <pre>Apellido Paterno   :   <input type="text" name="paterno"></pre>
                 <pre>Apellido Materno   :   <input type="text" name="materno"></pre>
-                <pre>Usuario            :   <input type="text" name="username"></pre>
+                <pre>Usuario            :   <input type="text" name="username"placeholder="'Apellido + id'"></pre>
                 <pre>Email              :   <input type="email" name="email"></pre>
-                <pre>Fecha de nacimiento:   <input type="text" name="fechaNac"></pre>
+                <pre>Fecha de nacimiento:   <input type="text" name="fechaNac" placeholder=" AAAA/MM/DD"></pre>
                 <pre>Teléfono           :   <input type="text" name="telefono"></pre>
                 <pre>Dirección          :   <input type="text" name="direccion"></pre>
                 <pre>Contraseña         :   <input type="password" name="password1"></pre>
@@ -36,7 +37,6 @@
         integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
         crossorigin="anonymous"></script>
 
-        
-
-{% endblock %}
+<script src="{% static 'js/registro.js' %}"></script>
 <link rel="stylesheet" href="{% static 'css/registro.css' %}">
+{% endblock %}
