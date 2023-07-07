@@ -28,4 +28,6 @@ urlpatterns = [
     path('tasks/create/', create_task, name='create_task'),
     path('logout/', views.cerrar_sesion, name='logout'),
     path('usuarios/index/', index, name='index'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] 
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

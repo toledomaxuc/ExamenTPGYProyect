@@ -16,7 +16,6 @@ urlpatterns = [
     path('Formulario', views.Formulario, name='Formulario'),
     path('categoria', views.categoria, name='categoria'),
     path('resultados-busqueda/', views.buscar, name='resultados_busqueda'),
-    path('periodista', views.periodista, name='periodista'),
     path('logout/', views.cerrar_sesion, name="logout"),
     path('iniSesion/', views.iniSesion, name="iniSesion"),
     path('tasks/', views.tasks, name="tasks"),
@@ -27,4 +26,6 @@ urlpatterns = [
     path('tasks/<int:task_id>/delete', views.delete_task, name="delete_task"),
     path('accounts/', include('django.contrib.auth.urls')),
     
-]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

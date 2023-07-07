@@ -63,12 +63,12 @@ def registro(request):
                 #lo tira a la base de datos con .save()
                 user.save()
                 login(request, user)
-                return render (request, 'usuarios/index.html',{
+                return render (request, 'usuarios/iniSesion.html',{
                     'form': UserCreationForm,
                     "error": 'usuario creado exitosamente'
                 })
             except IntegrityError:
-                return render (request, 'usuarios/index.html',{
+                return render (request, 'usuarios/registro.html',{
                     'form': UserCreationForm,
                     "error": 'El usuario ya existe'
                 })
@@ -82,22 +82,21 @@ def cerrar_sesion(request):
     logout(request)
     return redirect('index')
 
-@login_required
+
 def iniSesion(request):
     if request.method == 'GET':
-        return render(request, 'usuarios/periodista.html', {
-            'form': AuthenticationForm()
-        })
+        return render(request, 'usuarios/iniSesion.html', {'form': AuthenticationForm()})
     else:
         user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
         if user is None:
-            return render(request, 'usuarios/periodista.html', {
+            return render(request, 'usuarios/iniSesion.html', {
                 'form': AuthenticationForm(),
                 'error': 'Usuario o contraseña incorrectos'
             })
         else:
             login(request, user)
-            return redirect('index')
+            # Redirige al usuario a la página de inicio o a otra página que desees
+            return redirect('tasks_completed')
 
 class PoliticaView(TemplateView):
     template_name = 'usuarios/POLITICA.html'
@@ -115,10 +114,6 @@ def Formulario(request):
 def categoria(request):
     context={} 
     return render(request, 'usuarios/categoria.html' , context)
-
-def periodista(request):
-    context={} 
-    return render(request, 'usuarios/periodista.html', context)
 
 
 class BuscarNoticias(ListView):
